@@ -34,3 +34,55 @@ CREATE TABLE salaries (
 	FOREIGN KEY (emp_no) REFERENCES employee (emp_no),
 	PRIMARY KEY (emp_no)
 );
+
+COPY employee
+FROM '/Users/sivaelango/public/employees.csv'
+DELIMITER ',' CSV HEADER;
+
+SELECT * from Employee;
+
+COPY departments
+FROM '/Users/sivaelango/public/departments.csv'
+DELIMITER ',' CSV HEADER;
+
+SELECT * from departments;
+
+COPY dept_manager
+FROM '/Users/sivaelango/public/dept_manager.csv'
+DELIMITER ',' CSV HEADER;
+
+SELECT * from dept_manager;
+
+COPY salaries
+FROM '/Users/sivaelango/public/salaries.csv'
+DELIMITER ',' CSV HEADER;
+
+SELECT * from salaries;
+
+COPY employee
+FROM '/Users/sivaelango/public/employees.csv'
+DELIMITER ',' CSV HEADER;
+
+SELECT count(*)
+FROM employee
+WHERE birth_date BETWEEN '1952-01-01' AND '1952-12-31';
+
+-- Retirement eligibility
+SELECT first_name, last_name
+FROM employee
+WHERE (birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+AND (hire_date BETWEEN '1985-01-01' AND '1988-12-31');
+
+-- Number of employees retiring
+SELECT COUNT(first_name)
+FROM employee
+WHERE (birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+AND (hire_date BETWEEN '1985-01-01' AND '1988-12-31');
+
+-- Number of employees retiring
+SELECT first_name, last_name INTO Retirement_Info
+FROM employee
+WHERE (birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+AND (hire_date BETWEEN '1985-01-01' AND '1988-12-31');
+
+SELECT * from retirement_info;
